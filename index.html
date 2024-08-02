@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Maker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            padding-top: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+        }
+
+        .resume {
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .resume h2 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: 500;
+        }
+
+        .resume .section {
+            margin-bottom: 20px;
+        }
+
+        .resume .section h4 {
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            color: #007bff;
+            font-size: 20px;
+        }
+
+        .resume p {
+            margin: 0;
+            line-height: 1.6;
+            font-size: 16px;
+            white-space: pre-wrap;
+        }
+
+        .resume a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .resume a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #5a6268;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .form-control {
+            border-radius: 4px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, .075);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+        }
+
+        @media (max-width: 576px) {
+            .form-group {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        @media print {
+            .btn-custom, .btn-secondary, .btn-success {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center mb-5">Resume Maker</h1>
+        <form id="resumeForm">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Full Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="john.doe@example.com" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="phone">Phone</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="+1 234 567 890" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="portfolio">Portfolio URL</label>
+                    <input type="url" class="form-control" id="portfolio" placeholder="https://portfolio.example.com">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="education">Education</label>
+                <textarea class="form-control" id="education" rows="3" placeholder="Bachelor of Science in Computer Science, XYZ University, 2020" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="experience">Experience</label>
+                <textarea class="form-control" id="experience" rows="3" placeholder="Software Engineer at ABC Corp, 2021-Present" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="skills">Skills</label>
+                <textarea class="form-control" id="skills" rows="3" placeholder="JavaScript, Python, React, Node.js" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="projects">Projects</label>
+                <textarea class="form-control" id="projects" rows="3" placeholder="Personal Portfolio Website, E-commerce Platform"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="certifications">Certifications</label>
+                <textarea class="form-control" id="certifications" rows="3" placeholder="Certified Java Developer, AWS Certified Solutions Architect"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="training">Training & Courses</label>
+                <textarea class="form-control" id="training" rows="3" placeholder="Machine Learning Specialization, Coursera, 2021"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="personalProjects">Personal Project Links</label>
+                <textarea class="form-control" id="personalProjects" rows="3" placeholder="https://github.com/username/project1, https://github.com/username/project2"></textarea>
+            </div>
+            <div class="text-center mb-5">
+                <button type="submit" class="btn btn-custom text-light">Generate Resume</button>
+                <button type="reset" class="btn btn-secondary ml-2">Reset</button>
+            </div>
+        </form>
+
+        <div class="resume" id="resume" style="display: none;">
+            <h2 id="resumeName"></h2>
+            <p><strong>Email:</strong> <span id="resumeEmail"></span></p>
+            <p><strong>Phone:</strong> <span id="resumePhone"></span></p>
+            <p><strong>Portfolio:</strong> <a id="resumePortfolio" href="#" target="_blank"></a></p>
+            <div class="section" id="educationSection" style="display: none;">
+                <h4>Education</h4>
+                <p id="resumeEducation"></p>
+            </div>
+            <div class="section" id="experienceSection" style="display: none;">
+                <h4>Experience</h4>
+                <p id="resumeExperience"></p>
+            </div>
+            <div class="section" id="skillsSection" style="display: none;">
+                <h4>Skills</h4>
+                <p id="resumeSkills"></p>
+            </div>
+            <div class="section" id="projectsSection" style="display: none;">
+                <h4>Projects</h4>
+                <p id="resumeProjects"></p>
+            </div>
+            <div class="section" id="certificationsSection" style="display: none;">
+                <h4>Certifications</h4>
+                <p id="resumeCertifications"></p>
+            </div>
+            <div class="section" id="trainingSection" style="display: none;">
+                <h4>Training & Courses</h4>
+                <p id="resumeTraining"></p>
+            </div>
+            <div class="section" id="personalProjectsSection" style="display: none;">
+                <h4>Personal Project Links</h4>
+                <p id="resumePersonalProjects"></p>
+            </div>
+        </div>
+        <div class="text-center mb-5">
+            <button type="button" class="btn btn-success" id="downloadPdf" style="display: none;">Download PDF</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
+    <script>
+        document.getElementById('resumeForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Update resume fields
+            document.getElementById('resumeName').textContent = document.getElementById('name').value;
+            document.getElementById('resumeEmail').textContent = document.getElementById('email').value;
+            document.getElementById('resumePhone').textContent = document.getElementById('phone').value;
+            document.getElementById('resumeEducation').textContent = document.getElementById('education').value;
+            document.getElementById('resumeExperience').textContent = document.getElementById('experience').value;
+            document.getElementById('resumeSkills').textContent = document.getElementById('skills').value;
+            document.getElementById('resumeProjects').textContent = document.getElementById('projects').value;
+            document.getElementById('resumeCertifications').textContent = document.getElementById('certifications').value;
+            document.getElementById('resumeTraining').textContent = document.getElementById('training').value;
+            document.getElementById('resumePersonalProjects').textContent = document.getElementById('personalProjects').value;
+
+            // Update portfolio link
+            const portfolio = document.getElementById('portfolio').value;
+            const portfolioLink = document.getElementById('resumePortfolio');
+            if (portfolio) {
+                portfolioLink.href = portfolio;
+                portfolioLink.textContent = portfolio;
+            } else {
+                portfolioLink.href = '#';
+                portfolioLink.textContent = 'No Portfolio Provided';
+            }
+
+            // Show resume and download button
+            document.getElementById('resume').style.display = 'block';
+            document.getElementById('downloadPdf').style.display = 'inline-block';
+
+            // Hide empty sections
+            const sections = ['education', 'experience', 'skills', 'projects', 'certifications', 'training', 'personalProjects'];
+            sections.forEach(section => {
+                const sectionElement = document.getElementById(`${section}Section`);
+                const content = document.getElementById(`resume${capitalizeFirstLetter(section)}`).textContent.trim();
+                sectionElement.style.display = content ? 'block' : 'none';
+            });
+        });
+
+        document.getElementById('resumeForm').addEventListener('reset', function () {
+            document.getElementById('resume').style.display = 'none';
+            document.getElementById('downloadPdf').style.display = 'none';
+        });
+
+        document.getElementById('downloadPdf').addEventListener('click', function () {
+            const element = document.getElementById('resume');
+            html2pdf().from(element).set({
+                margin: [10, 10, 10, 10],
+                filename: 'resume.pdf',
+                image: { type: 'jpeg', quality: 1.0 },
+                html2canvas: { scale: 3, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                enableLinks: true
+            }).save();
+        });
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+    </script>
+</body>
+
+</html>
