@@ -11,101 +11,22 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background: #ffffff;
+            background-color: #f5f7fa;
             color: #333;
             padding-top: 20px;
         }
 
         .container {
             max-width: 900px;
-            padding: 20px 20px 0.2cm 20px;
+        }
+
+        .resume {
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
-        }
-
-        h1 {
-            font-size: 36px;
-            color: #007bff;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .card {
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-header {
-            background: #007bff;
-            color: #ffffff;
-            font-weight: 500;
-            font-size: 20px;
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .btn-custom {
-            background-color: #007bff;
-            border-color: #007bff;
-            color: #fff;
-            font-weight: 500;
-            border-radius: 25px;
-            padding: 10px 20px;
-            font-size: 16px;
-            transition: background-color 0.3s, border-color 0.3s;
-        }
-
-        .btn-custom:hover {
-            background-color: #0056b3;
-            color: white;
-            border-color: #0056b3;
-        }
-
-        .btn-secondary {
-            background-color: #6c757d;
-            border-color: #6c757d;
-            border-radius: 25px;
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-
-        .btn-secondary:hover {
-            background-color: #5a6268;
-            border-color: #5a6268;
-        }
-
-        .btn-success {
-            background-color: #28a745;
-            border-color: #28a745;
-            border-radius: 25px;
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-
-        .btn-success:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-        }
-
-        .form-control {
-            border-radius: 20px;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, .075);
-            border: 1px solid #ced4da;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .form-control:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            font-weight: 500;
+            margin-bottom: 20px;
+            border-radius: 8px;
         }
 
         .resume h2 {
@@ -144,6 +65,51 @@
             text-decoration: underline;
         }
 
+        .btn-custom {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #5a6268;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .form-control {
+            border-radius: 4px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, .075);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+        }
+
         @media (max-width: 576px) {
             .form-group {
                 margin-bottom: 0.5rem;
@@ -163,83 +129,65 @@
 </head>
 
 <body>
-    <div class="container mb-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Resume Maker</h1>
         <form id="resumeForm">
-            <h1 class="mt-3">Resume Maker</h1>
-
-            <div class="card mb-4">
-                <div class="card-header">
-                    Basic Information
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Full Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="John Doe" required>
                 </div>
-                <div class="card-body">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="name">Full Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="John Doe" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="john.doe@example.com" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="phone">Phone</label>
-                            <input type="tel" class="form-control" id="phone" placeholder="+1 234 567 890" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" placeholder="City Name">
-                        </div>
-                    </div>
-                    
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="john.doe@example.com" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="phone">Phone</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="+1 234 567 890" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city" placeholder="City Name">
+                </div>
+            </div>
                 <div class="form-group">
                     <label for="portfolio">Portfolio URL</label>
                     <input type="url" class="form-control" id="portfolio" placeholder="https://portfolio.example.com">
                 </div>
+            <div class="form-group">
+                <label for="education">Education</label>
+                <textarea class="form-control" id="education" rows="3" placeholder="Bachelor of Science in Computer Science, XYZ University, 2020"></textarea>
             </div>
-</div>
-            <div class="card mb-4">
-                <div class="card-header">
-                    Details
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="education">Education</label>
-                        <textarea class="form-control" id="education" rows="3" placeholder="Bachelor of Science in Computer Science, XYZ University, 2020"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="experience">Experience</label>
-                        <textarea class="form-control" id="experience" rows="3" placeholder="Software Engineer at ABC Corp, 2021-Present"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="skills">Skills</label>
-                        <textarea class="form-control" id="skills" rows="3" placeholder="JavaScript, Python, React, Node.js"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="projects">Projects</label>
-                        <textarea class="form-control" id="projects" rows="3" placeholder="Personal Portfolio Website, E-commerce Platform"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="certifications">Certifications</label>
-                        <textarea class="form-control" id="certifications" rows="3" placeholder="Certified Java Developer, AWS Certified Solutions Architect"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="training">Training & Courses</label>
-                        <textarea class="form-control" id="training" rows="3" placeholder="Machine Learning Specialization, Coursera, 2021"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="personalProjects">Personal Project Links</label>
-                        <textarea class="form-control" id="personalProjects" rows="3" placeholder="https://github.com/username/project1, https://github.com/username/project2"></textarea>
-                    </div>
-                </div>
-                <div class="text-center mb-5">
-                    <button type="submit" class="btn btn-custom">Generate Resume</button>
-                    <button type="reset" class="btn btn-secondary ml-2">Reset</button>
-                </div>
+            <div class="form-group">
+                <label for="experience">Experience</label>
+                <textarea class="form-control" id="experience" rows="3" placeholder="Software Engineer at ABC Corp, 2021-Present"></textarea>
             </div>
-
-            
+            <div class="form-group">
+                <label for="skills">Skills</label>
+                <textarea class="form-control" id="skills" rows="3" placeholder="JavaScript, Python, React, Node.js"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="projects">Projects</label>
+                <textarea class="form-control" id="projects" rows="3" placeholder="Personal Portfolio Website, E-commerce Platform"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="certifications">Certifications</label>
+                <textarea class="form-control" id="certifications" rows="3" placeholder="Certified Java Developer, AWS Certified Solutions Architect"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="training">Training & Courses</label>
+                <textarea class="form-control" id="training" rows="3" placeholder="Machine Learning Specialization, Coursera, 2021"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="personalProjects">Personal Project Links</label>
+                <textarea class="form-control" id="personalProjects" rows="3" placeholder="https://github.com/username/project1, https://github.com/username/project2"></textarea>
+            </div>
+            <div class="text-center mb-5">
+                <button type="submit" class="btn btn-custom text-light">Generate Resume</button>
+                <button type="reset" class="btn btn-secondary ml-2">Reset</button>
+            </div>
         </form>
 
         <div class="resume" id="resume" style="display: none;">
@@ -247,44 +195,40 @@
             <p><strong>Email:</strong> <span id="resumeEmail"></span></p>
             <p><strong>Phone:</strong> <span id="resumePhone"></span></p>
             <p><strong>City:</strong> <span id="resumeCity"></span></p>
-            <p><strong>Portfolio:</strong> <a id="resumePortfolio" href="#" target="_blank">No Portfolio Provided</a></p>
-
-            <div id="portfoliosection" class="resume-section">
-                <h4>Portfolio</h4>
-                <p id="resumePortfolio"></p>
+            <div class="section resume-section" id="portfoliosection">
+            <p><strong>Portfolio:</strong> <a id="resumePortfolio" href="#" target="_blank"></a></p>
             </div>
-            <div id="educationSection" class="resume-section">
+            <div class="section resume-section" id="educationSection">
                 <h4>Education</h4>
                 <p id="resumeEducation"></p>
             </div>
-            <div id="experienceSection" class="resume-section">
+            <div class="section resume-section" id="experienceSection">
                 <h4>Experience</h4>
                 <p id="resumeExperience"></p>
             </div>
-            <div id="skillsSection" class="resume-section">
+            <div class="section resume-section" id="skillsSection">
                 <h4>Skills</h4>
                 <p id="resumeSkills"></p>
             </div>
-            <div id="projectsSection" class="resume-section">
+            <div class="section resume-section" id="projectsSection">
                 <h4>Projects</h4>
                 <p id="resumeProjects"></p>
             </div>
-            <div id="certificationsSection" class="resume-section">
+            <div class="section resume-section" id="certificationsSection">
                 <h4>Certifications</h4>
                 <p id="resumeCertifications"></p>
             </div>
-            <div id="trainingSection" class="resume-section">
+            <div class="section resume-section" id="trainingSection">
                 <h4>Training & Courses</h4>
                 <p id="resumeTraining"></p>
             </div>
-            <div id="personalProjectsSection" class="resume-section">
+            <div class="section resume-section" id="personalProjectsSection">
                 <h4>Personal Project Links</h4>
                 <p id="resumePersonalProjects"></p>
             </div>
-
-            <div class="text-center mb-5">
-                <button type="button" class="btn btn-success" id="downloadPdf" style="display: none;">Download PDF</button>
-            </div>
+        </div>
+        <div class="text-center mb-5">
+            <button type="button" class="btn btn-success" id="downloadPdf" style="display: none;">Download PDF</button>
         </div>
     </div>
 
