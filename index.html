@@ -187,31 +187,31 @@
             <p><strong>Email:</strong> <span id="resumeEmail"></span></p>
             <p><strong>Phone:</strong> <span id="resumePhone"></span></p>
             <p><strong>Portfolio:</strong> <a id="resumePortfolio" href="#" target="_blank"></a></p>
-            <div class="section" id="educationSection" style="display: none;">
+            <div class="section">
                 <h4>Education</h4>
                 <p id="resumeEducation"></p>
             </div>
-            <div class="section" id="experienceSection" style="display: none;">
+            <div class="section">
                 <h4>Experience</h4>
                 <p id="resumeExperience"></p>
             </div>
-            <div class="section" id="skillsSection" style="display: none;">
+            <div class="section">
                 <h4>Skills</h4>
                 <p id="resumeSkills"></p>
             </div>
-            <div class="section" id="projectsSection" style="display: none;">
+            <div class="section">
                 <h4>Projects</h4>
                 <p id="resumeProjects"></p>
             </div>
-            <div class="section" id="certificationsSection" style="display: none;">
+            <div class="section">
                 <h4>Certifications</h4>
                 <p id="resumeCertifications"></p>
             </div>
-            <div class="section" id="trainingSection" style="display: none;">
+            <div class="section">
                 <h4>Training & Courses</h4>
                 <p id="resumeTraining"></p>
             </div>
-            <div class="section" id="personalProjectsSection" style="display: none;">
+            <div class="section">
                 <h4>Personal Project Links</h4>
                 <p id="resumePersonalProjects"></p>
             </div>
@@ -224,12 +224,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script>
         document.getElementById('resumeForm').addEventListener('submit', function (event) {
             event.preventDefault();
-
-            // Update resume fields
             document.getElementById('resumeName').textContent = document.getElementById('name').value;
             document.getElementById('resumeEmail').textContent = document.getElementById('email').value;
             document.getElementById('resumePhone').textContent = document.getElementById('phone').value;
@@ -241,7 +239,6 @@
             document.getElementById('resumeTraining').textContent = document.getElementById('training').value;
             document.getElementById('resumePersonalProjects').textContent = document.getElementById('personalProjects').value;
 
-            // Update portfolio link
             const portfolio = document.getElementById('portfolio').value;
             const portfolioLink = document.getElementById('resumePortfolio');
             if (portfolio) {
@@ -252,20 +249,11 @@
                 portfolioLink.textContent = 'No Portfolio Provided';
             }
 
-            // Show resume and download button
             document.getElementById('resume').style.display = 'block';
             document.getElementById('downloadPdf').style.display = 'inline-block';
-
-            // Hide empty sections
-            const sections = ['education', 'experience', 'skills', 'projects', 'certifications', 'training', 'personalProjects'];
-            sections.forEach(section => {
-                const sectionElement = document.getElementById(`${section}Section`);
-                const content = document.getElementById(`resume${capitalizeFirstLetter(section)}`).textContent.trim();
-                sectionElement.style.display = content ? 'block' : 'none';
-            });
         });
 
-        document.getElementById('resumeForm').addEventListener('reset', function () {
+        document.getElementById('resumeForm').addEventListener('reset', function (event) {
             document.getElementById('resume').style.display = 'none';
             document.getElementById('downloadPdf').style.display = 'none';
         });
@@ -275,16 +263,12 @@
             html2pdf().from(element).set({
                 margin: [10, 10, 10, 10],
                 filename: 'resume.pdf',
-                image: { type: 'jpeg', quality: 1.0 },
+                image: { type: 'pdf', quality: 1.0 },
                 html2canvas: { scale: 3, useCORS: true },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
                 enableLinks: true
             }).save();
         });
-
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
     </script>
 </body>
 
