@@ -51,7 +51,7 @@
 
         .resume p {
             margin: 0;
-            line-height: 1.6;
+            line-height: 1.8;
             font-size: 16px;
             white-space: pre-wrap;
         }
@@ -121,6 +121,10 @@
                 display: none;
             }
         }
+
+        .resume-section {
+            display: none;
+        }
     </style>
 </head>
 
@@ -144,21 +148,25 @@
                     <input type="tel" class="form-control" id="phone" placeholder="+1 234 567 890" required>
                 </div>
                 <div class="form-group col-md-6">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city" placeholder="City Name">
+                </div>
+            </div>
+                <div class="form-group">
                     <label for="portfolio">Portfolio URL</label>
                     <input type="url" class="form-control" id="portfolio" placeholder="https://portfolio.example.com">
                 </div>
-            </div>
             <div class="form-group">
                 <label for="education">Education</label>
-                <textarea class="form-control" id="education" rows="3" placeholder="Bachelor of Science in Computer Science, XYZ University, 2020" required></textarea>
+                <textarea class="form-control" id="education" rows="3" placeholder="Bachelor of Science in Computer Science, XYZ University, 2020"></textarea>
             </div>
             <div class="form-group">
                 <label for="experience">Experience</label>
-                <textarea class="form-control" id="experience" rows="3" placeholder="Software Engineer at ABC Corp, 2021-Present" required></textarea>
+                <textarea class="form-control" id="experience" rows="3" placeholder="Software Engineer at ABC Corp, 2021-Present"></textarea>
             </div>
             <div class="form-group">
                 <label for="skills">Skills</label>
-                <textarea class="form-control" id="skills" rows="3" placeholder="JavaScript, Python, React, Node.js" required></textarea>
+                <textarea class="form-control" id="skills" rows="3" placeholder="JavaScript, Python, React, Node.js"></textarea>
             </div>
             <div class="form-group">
                 <label for="projects">Projects</label>
@@ -186,32 +194,35 @@
             <h2 id="resumeName"></h2>
             <p><strong>Email:</strong> <span id="resumeEmail"></span></p>
             <p><strong>Phone:</strong> <span id="resumePhone"></span></p>
+            <p><strong>City:</strong> <span id="resumeCity"></span></p>
+            <div class="section resume-section" id="portfoliosection">
             <p><strong>Portfolio:</strong> <a id="resumePortfolio" href="#" target="_blank"></a></p>
-            <div class="section">
+            </div>
+            <div class="section resume-section" id="educationSection">
                 <h4>Education</h4>
                 <p id="resumeEducation"></p>
             </div>
-            <div class="section">
+            <div class="section resume-section" id="experienceSection">
                 <h4>Experience</h4>
                 <p id="resumeExperience"></p>
             </div>
-            <div class="section">
+            <div class="section resume-section" id="skillsSection">
                 <h4>Skills</h4>
                 <p id="resumeSkills"></p>
             </div>
-            <div class="section">
+            <div class="section resume-section" id="projectsSection">
                 <h4>Projects</h4>
                 <p id="resumeProjects"></p>
             </div>
-            <div class="section">
+            <div class="section resume-section" id="certificationsSection">
                 <h4>Certifications</h4>
                 <p id="resumeCertifications"></p>
             </div>
-            <div class="section">
+            <div class="section resume-section" id="trainingSection">
                 <h4>Training & Courses</h4>
                 <p id="resumeTraining"></p>
             </div>
-            <div class="section">
+            <div class="section resume-section" id="personalProjectsSection">
                 <h4>Personal Project Links</h4>
                 <p id="resumePersonalProjects"></p>
             </div>
@@ -228,18 +239,27 @@
     <script>
         document.getElementById('resumeForm').addEventListener('submit', function (event) {
             event.preventDefault();
-            document.getElementById('resumeName').textContent = document.getElementById('name').value;
-            document.getElementById('resumeEmail').textContent = document.getElementById('email').value;
-            document.getElementById('resumePhone').textContent = document.getElementById('phone').value;
-            document.getElementById('resumeEducation').textContent = document.getElementById('education').value;
-            document.getElementById('resumeExperience').textContent = document.getElementById('experience').value;
-            document.getElementById('resumeSkills').textContent = document.getElementById('skills').value;
-            document.getElementById('resumeProjects').textContent = document.getElementById('projects').value;
-            document.getElementById('resumeCertifications').textContent = document.getElementById('certifications').value;
-            document.getElementById('resumeTraining').textContent = document.getElementById('training').value;
-            document.getElementById('resumePersonalProjects').textContent = document.getElementById('personalProjects').value;
-
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const city = document.getElementById('city').value;
             const portfolio = document.getElementById('portfolio').value;
+            const education = document.getElementById('education').value;
+            const experience = document.getElementById('experience').value;
+            const skills = document.getElementById('skills').value;
+            const projects = document.getElementById('projects').value;
+            const certifications = document.getElementById('certifications').value;
+            const training = document.getElementById('training').value;
+            const personalProjects = document.getElementById('personalProjects').value;
+            
+            // Set resume content
+            document.getElementById('resumeName').textContent = name;
+            document.getElementById('resumeEmail').textContent = email;
+            document.getElementById('resumePhone').textContent = phone;
+            document.getElementById('resumeCity').textContent = city;
+            
             const portfolioLink = document.getElementById('resumePortfolio');
             if (portfolio) {
                 portfolioLink.href = portfolio;
@@ -248,7 +268,31 @@
                 portfolioLink.href = '#';
                 portfolioLink.textContent = 'No Portfolio Provided';
             }
+            
+            // Show or hide sections based on content
+            const sections = {
+                portfolio: 'portfoliosection',
+                education: 'educationSection',
+                experience: 'experienceSection',
+                skills: 'skillsSection',
+                projects: 'projectsSection',
+                certifications: 'certificationsSection',
+                training: 'trainingSection',
+                personalProjects: 'personalProjectsSection'
+            };
+            
+            Object.keys(sections).forEach(key => {
+                const section = document.getElementById(sections[key]);
+                const content = document.getElementById(`resume${key.charAt(0).toUpperCase() + key.slice(1)}`);
+                if (eval(key)) {
+                    content.textContent = eval(key);
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
 
+            // Show resume and download button
             document.getElementById('resume').style.display = 'block';
             document.getElementById('downloadPdf').style.display = 'inline-block';
         });
